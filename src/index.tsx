@@ -7,9 +7,11 @@ export function multiply(a: number, b: number): Promise<number> {
   return Promise.resolve(a * b);
 }
 
-const SDK = (props) => {
+const SDK = (props: any) => {
   const [media, setMedia] = useState();
-  // const index = 2; //parseInt(props.id) % 10;
+
+  console.log('props', props);
+
   useEffect(() => {
     const headers = {
       'x-api-key': 'ODFiNmUxODItMmMyNS00NTg4LWEyZTAtZDI3ZDAyNTY3MmQ2',
