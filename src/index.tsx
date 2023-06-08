@@ -13,14 +13,15 @@ const SDK = (props) => {
   useEffect(() => {
     const headers = {
       'x-api-key': 'ODFiNmUxODItMmMyNS00NTg4LWEyZTAtZDI3ZDAyNTY3MmQ2',
-      'X-Host': 'inmobi.com',
+      'authority': 'ad-service.commerce.inmobi.com',
+      'client-id': '70891516',
     };
 
     const data = {
       user: {
         guest_id: 'b908f460957b11ed81e1c53095da88cf',
         user_id: '',
-        platform: { device_type: 'DESKTOP' },
+        platform: { device_type: 'MOBILE' },
         address: { zip_code: '10001' },
       },
       filter: {
