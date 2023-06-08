@@ -40,7 +40,7 @@ const SDK = (props) => {
       })
       .then((response) => {
         // handle success
-        setVideo(response.data.ads_data.[0].ads[0].media_details);
+        setVideo(response.data.ads_data[0].ads[0].media_details);
       })
       .catch(function (error) {
         // handle error
