@@ -37,7 +37,7 @@ const SDK = (props) => {
     <View>
       <VideoPlayer
         video={{
-          uri: video?.videoUrl,
+          uri: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4', //video?.videoUrl,
         }}
         videoWidth={1600}
         videoHeight={900}
