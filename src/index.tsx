@@ -8,7 +8,7 @@ export function multiply(a: number, b: number): Promise<number> {
 }
 
 const SDK = (props) => {
-  const [video, setVideo] = useState();
+  const [media, setMedia] = useState();
   // const index = 2; //parseInt(props.id) % 10;
   useEffect(() => {
     const headers = {
@@ -21,7 +21,7 @@ const SDK = (props) => {
       user: {
         guest_id: 'b908f460957b11ed81e1c53095da88cf',
         user_id: '',
-        platform: { device_type: 'MOBILE' },
+        platform: { device_type: 'DESKTOP' },
         address: { zip_code: '10001' },
       },
       filter: {
@@ -41,7 +41,11 @@ const SDK = (props) => {
       })
       .then((response) => {
         // handle success
-        setVideo(response.data.data.ads_data[0].ads[0].media_details[0]);
+        console.log(
+          'response.data.data.ads_data[0].ads[0].media_details[0]====',
+          response.data.data.ads_data[0].ads[0].media_details[0]
+        );
+        setMedia(response.data.data.ads_data[0].ads[0].media_details[0]);
       })
       .catch(function (error) {
         // handle error
@@ -49,7 +53,7 @@ const SDK = (props) => {
       });
   }, []);
 
-  if (!video) {
+  if (!media) {
     return (
       <View>
         <ActivityIndicator size="large" color="#AAAAAA" />
@@ -61,7 +65,7 @@ const SDK = (props) => {
     <View>
       <VideoPlayer
         video={{
-          uri: video?.media_access_url,
+          uri: media?.media_access_url,
         }}
         videoWidth={1600}
         videoHeight={900}
@@ -70,7 +74,7 @@ const SDK = (props) => {
         muted
         hideControlsOnStart
         disableSeek
-        thumbnail={{ uri: video?.poster_access_url }}
+        thumbnail={{ uri: media?.poster_access_url }}
       />
       <View
         style={{
