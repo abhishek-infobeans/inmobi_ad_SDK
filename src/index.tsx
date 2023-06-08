@@ -13,7 +13,7 @@ const SDK = (props) => {
   useEffect(() => {
     axios
       .get(
-        'https://gist.githubusercontent.com/poudyalanil/ca84582cbeb4fc123a13290a586da925/raw/14a27bd0bcd0cd323b35ad79cf3b493dddf6216b/videos.json1'
+        'https://gist.githubusercontent.com/poudyalanil/ca84582cbeb4fc123a13290a586da925/raw/14a27bd0bcd0cd323b35ad79cf3b493dddf6216b/videos.json'
       )
       .then((response) => {
         // handle success
@@ -37,7 +37,7 @@ const SDK = (props) => {
     <View>
       <VideoPlayer
         video={{
-          uri: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4', //video?.videoUrl,
+          uri: video?.videoUrl,
         }}
         videoWidth={1600}
         videoHeight={900}
