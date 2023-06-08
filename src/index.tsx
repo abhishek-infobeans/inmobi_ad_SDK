@@ -9,15 +9,38 @@ export function multiply(a: number, b: number): Promise<number> {
 
 const SDK = (props) => {
   const [video, setVideo] = useState();
-  const index = 2; //parseInt(props.id) % 10;
+  // const index = 2; //parseInt(props.id) % 10;
   useEffect(() => {
+    const headers = {
+      'x-api-key': 'ODFiNmUxODItMmMyNS00NTg4LWEyZTAtZDI3ZDAyNTY3MmQ2',
+      'X-Host': 'inmobi.com',
+    };
+
+    const data = {
+      user: {
+        guest_id: 'b908f460957b11ed81e1c53095da88cf',
+        user_id: '',
+        platform: { device_type: 'DESKTOP' },
+        address: { zip_code: '10001' },
+      },
+      filter: {
+        placements: [
+          { ad_count: 2, id: 103 },
+          { ad_count: 2, id: 117 },
+        ],
+        targeting_type: 'CATEGORY',
+        targeting_value_list: ['womens-sale'],
+      },
+      consent: { gdpr: true, ccpa: true, coppa: true },
+    };
+
     axios
-      .get(
-        'https://gist.githubusercontent.com/poudyalanil/ca84582cbeb4fc123a13290a586da925/raw/14a27bd0bcd0cd323b35ad79cf3b493dddf6216b/videos.json'
-      )
+      .post(`https://ad-service.commerce.inmobi.com/v1/ads/bulk`, data, {
+        headers: headers,
+      })
       .then((response) => {
         // handle success
-        setVideo(response.data[index]);
+        setVideo(response.data.ads_data.[0].ads[0].media_details);
       })
       .catch(function (error) {
         // handle error
@@ -37,7 +60,7 @@ const SDK = (props) => {
     <View>
       <VideoPlayer
         video={{
-          uri: video?.videoUrl,
+          uri: video?.media_access_url,
         }}
         videoWidth={1600}
         videoHeight={900}
@@ -46,7 +69,7 @@ const SDK = (props) => {
         muted
         hideControlsOnStart
         disableSeek
-        thumbnail={{ uri: video.thumbnailUrl }}
+        thumbnail={{ uri: video?.poster_access_url }}
       />
       <View
         style={{
