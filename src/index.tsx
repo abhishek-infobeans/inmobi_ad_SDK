@@ -41,15 +41,7 @@ const SDK = (props) => {
       })
       .then((response) => {
         // handle success
-        console.log('response from SDK++++', response);
-        console.log('response.data.ads_data', response.data.ads_data);
-        console.log('response.data.ads_data[0]', response.data.ads_data[0].ads);
-        console.log(
-          'response.data.ads_data[0].ads[0].media_details',
-          response.data.ads_data[0].ads[0].media_details
-        );
-
-        setVideo(response.data.ads_data[0].ads[0].media_details);
+        setVideo(response.data.data.ads_data[0].media_details);
       })
       .catch(function (error) {
         // handle error
