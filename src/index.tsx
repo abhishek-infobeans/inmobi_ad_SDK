@@ -69,39 +69,45 @@ const SDK = (props: any) => {
   };
 
   return (
-    <TouchableOpacity onPress={videoTapped}>
-      <View>
-        <VideoPlayer
-          video={{
-            uri: media?.media_access_url,
-          }}
-          videoWidth={1600}
-          videoHeight={900}
-          loop
-          autoplay
-          muted
-          hideControlsOnStart
-          disableSeek
-          thumbnail={{ uri: media?.poster_access_url }}
-        />
-        <View
+    <View>
+      <VideoPlayer
+        video={{
+          uri: media?.media_access_url,
+        }}
+        videoWidth={1600}
+        videoHeight={900}
+        loop
+        autoplay
+        muted
+        hideControlsOnStart
+        disableSeek
+        thumbnail={{ uri: media?.poster_access_url }}
+      />
+      <View
+        style={{
+          backgroundColor: '#00000080',
+          position: 'absolute',
+          padding: 5,
+          margin: 8,
+        }}
+      >
+        <Text
           style={{
-            backgroundColor: '#00000080',
-            position: 'absolute',
-            padding: 5,
-            margin: 8,
+            color: 'white',
           }}
         >
-          <Text
-            style={{
-              color: 'white',
-            }}
-          >
-            Ad
-          </Text>
-        </View>
+          Ad
+        </Text>
       </View>
-    </TouchableOpacity>
+      <TouchableOpacity
+        onPress={videoTapped}
+        style={{
+          position: 'absolute',
+          width: '100%',
+          height: '100%',
+        }}
+      ></TouchableOpacity>
+    </View>
   );
 };
 
