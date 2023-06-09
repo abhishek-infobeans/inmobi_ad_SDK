@@ -64,10 +64,9 @@ const SDK = (props: any) => {
     );
   }
 
-  const videoTapped() => {
-    props.advertisementTapped(media.id)
-  }
-
+  const videoTapped = () => {
+    props.advertisementTapped(media.id);
+  };
 
   return (
     <TouchableOpacity onPress={videoTapped}>
