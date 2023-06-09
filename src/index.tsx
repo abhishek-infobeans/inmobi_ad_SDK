@@ -1,19 +1,17 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { TouchableOpacity } from 'react-native';
-import { ActivityIndicator, Text, View } from 'react-native';
-import VideoPlayer from 'react-native-video-player';
-
-export function multiply(a: number, b: number): Promise<number> {
-  return Promise.resolve(a * b);
-}
+import { Text, View } from 'react-native';
+import Video from 'react-native-video';
 
 const SDK = (props: any) => {
-  const [media, setMedia] = useState();
-
-  console.log('props', props);
+  const [media, setMedia] = useState<any>();
 
   useEffect(() => {
+    getAD();
+  }, []);
+
+  const getAD = () => {
     const headers = {
       'x-api-key': 'ODFiNmUxODItMmMyNS00NTg4LWEyZTAtZDI3ZDAyNTY3MmQ2',
       'authority': 'ad-service.commerce.inmobi.com',
@@ -54,60 +52,49 @@ const SDK = (props: any) => {
         // handle error
         console.log(error);
       });
-  }, []);
-
-  if (!media) {
-    return (
-      <View>
-        <ActivityIndicator size="large" color="#AAAAAA" />
-      </View>
-    );
-  }
+  };
 
   const videoTapped = () => {
     props.advertisementTapped(media.id);
   };
 
   return (
-    <View>
-      <VideoPlayer
-        video={{
-          uri: media?.media_access_url,
-        }}
-        videoWidth={1600}
-        videoHeight={900}
-        loop
-        autoplay
-        muted
-        hideControlsOnStart
-        disableSeek
-        thumbnail={{ uri: media?.poster_access_url }}
-      />
-      <View
-        style={{
-          backgroundColor: '#00000080',
-          position: 'absolute',
-          padding: 5,
-          margin: 8,
-        }}
-      >
-        <Text
-          style={{
-            color: 'white',
-          }}
-        >
-          Ad
-        </Text>
-      </View>
-      <TouchableOpacity
-        onPress={videoTapped}
-        style={{
-          position: 'absolute',
-          width: '100%',
-          height: '100%',
-        }}
-      ></TouchableOpacity>
-    </View>
+    <>
+      {media?.media_access_url ? (
+        <>
+          <Video
+            source={{ uri: media?.media_access_url }} // Can be a URL or a local file.
+            muted
+            repeat
+            style={{ height: 500, width: '100%' }}
+          />
+          <View
+            style={{
+              backgroundColor: '#00000080',
+              position: 'absolute',
+              padding: 5,
+              margin: 8,
+            }}
+          >
+            <Text
+              style={{
+                color: 'white',
+              }}
+            >
+              Ad
+            </Text>
+          </View>
+          <TouchableOpacity
+            onPress={videoTapped}
+            style={{
+              position: 'absolute',
+              width: '100%',
+              height: '100%',
+            }}
+          />
+        </>
+      ) : null}
+    </>
   );
 };
 
