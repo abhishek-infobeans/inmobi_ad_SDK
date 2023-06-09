@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { TouchableOpacity } from 'react-native';
+import { Dimensions, TouchableOpacity } from 'react-native';
 import { Text, View } from 'react-native';
 import Video from 'react-native-video';
 
@@ -58,6 +58,7 @@ const SDK = (props: any) => {
     props.advertisementTapped(media.id);
   };
 
+  const height = parseInt('' + (Dimensions.get('window').width * 9) / 16);
   return (
     <>
       {media?.media_access_url ? (
@@ -66,7 +67,9 @@ const SDK = (props: any) => {
             source={{ uri: media?.media_access_url }} // Can be a URL or a local file.
             muted
             repeat
-            style={{ height: 500, width: '100%' }}
+            posterResizeMode="cover"
+            resizeMode="cover"
+            style={{ height: height, width: '100%', backgroundColor: 'red' }}
           />
           <View
             style={{
