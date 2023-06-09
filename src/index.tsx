@@ -48,6 +48,10 @@ const SDK = (props: any) => {
           response.data.data.ads_data[0].ads[0].media_details[0]
         );
         setMedia(response.data.data.ads_data[0].ads[0].media_details[0]);
+
+        props.getData(
+          response.data.data.ads_data[0].ads[0].media_details[0].id
+        );
       })
       .catch(function (error) {
         // handle error
