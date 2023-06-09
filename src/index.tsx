@@ -69,7 +69,7 @@ const SDK = (props: any) => {
             repeat
             posterResizeMode="cover"
             resizeMode="cover"
-            style={{ height: height, width: '100%', backgroundColor: 'red' }}
+            style={{ height: height, width: '100%' }}
           />
           <View
             style={{
