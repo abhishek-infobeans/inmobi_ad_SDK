@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { TouchableOpacity } from 'react-native';
 import { ActivityIndicator, Text, View } from 'react-native';
 import VideoPlayer from 'react-native-video-player';
 
@@ -43,10 +44,6 @@ const SDK = (props: any) => {
       })
       .then((response) => {
         // handle success
-        console.log(
-          'response.data.data.ads_data[0].ads[0].media_details[0]====',
-          response.data.data.ads_data[0].ads[0].media_details[0]
-        );
         setMedia(response.data.data.ads_data[0].ads[0].media_details[0]);
 
         props.getData(
@@ -68,37 +65,39 @@ const SDK = (props: any) => {
   }
 
   return (
-    <View>
-      <VideoPlayer
-        video={{
-          uri: media?.media_access_url,
-        }}
-        videoWidth={1600}
-        videoHeight={900}
-        loop
-        autoplay
-        muted
-        hideControlsOnStart
-        disableSeek
-        thumbnail={{ uri: media?.poster_access_url }}
-      />
-      <View
-        style={{
-          backgroundColor: '#00000080',
-          position: 'absolute',
-          padding: 5,
-          margin: 8,
-        }}
-      >
-        <Text
+    <TouchableOpacity onPress={props.advertisementTapped(media.id)}>
+      <View>
+        <VideoPlayer
+          video={{
+            uri: media?.media_access_url,
+          }}
+          videoWidth={1600}
+          videoHeight={900}
+          loop
+          autoplay
+          muted
+          hideControlsOnStart
+          disableSeek
+          thumbnail={{ uri: media?.poster_access_url }}
+        />
+        <View
           style={{
-            color: 'white',
+            backgroundColor: '#00000080',
+            position: 'absolute',
+            padding: 5,
+            margin: 8,
           }}
         >
-          Ad
-        </Text>
+          <Text
+            style={{
+              color: 'white',
+            }}
+          >
+            Ad
+          </Text>
+        </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
