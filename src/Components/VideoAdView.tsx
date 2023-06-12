@@ -41,7 +41,7 @@ const VideoAdView = (props: any) => {
             resizeMode="cover"
             style={{ height: height, width: '100%' }}
           />
-        <AdTag />
+          <AdTag />
           <TouchableOpacity
             onPress={videoTapped}
             style={{
@@ -50,7 +50,7 @@ const VideoAdView = (props: any) => {
               height: '100%',
             }}
           />
-        </AdTag>
+        </>
       ) : null}
     </View>
   );
