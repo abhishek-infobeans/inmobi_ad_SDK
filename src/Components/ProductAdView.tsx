@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, Image } from 'react-native';
+import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 
 const ProductAdView = (props: any) => {
   const {
@@ -14,14 +14,7 @@ const ProductAdView = (props: any) => {
 
   const AdTag = () => {
     return (
-      <View
-        style={{
-          backgroundColor: '#00000080',
-          position: 'absolute',
-          padding: 5,
-          margin: 8,
-        }}
-      >
+      <View style={styles.adStyle}>
         <Text
           style={{
             color: 'white',
@@ -34,24 +27,50 @@ const ProductAdView = (props: any) => {
   };
 
   return (
-    <View style={sliderItemStyle}>
+    <View style={[styles.sliderItem, sliderItemStyle]}>
       <Image
-        style={[{ resizeMode: 'contain' }, sliderImgStyle]}
+        style={[styles.sliderImg, sliderImgStyle]}
         source={{ uri: mediaURL }}
       />
-      <Text style={sliderTextStyle}>Ad Product</Text>
-      <Text style={sliderPriceStyle}>$10</Text>
+      <Text style={[styles.sliderText, sliderTextStyle]}>Ad Product</Text>
+      <Text style={[styles.sliderPrice, sliderPriceStyle]}>$10</Text>
       <AdTag />
-      <TouchableOpacity
-        onPress={productTapped}
-        style={{
-          position: 'absolute',
-          width: '100%',
-          height: '100%',
-        }}
-      />
+      <TouchableOpacity onPress={productTapped} style={styles.adClick} />
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  adStyle: {
+    backgroundColor: '#00000080',
+    position: 'absolute',
+    padding: 5,
+    margin: 8,
+  },
+
+  sliderItem: {
+    width: 150,
+    marginLeft: 10,
+  },
+
+  sliderImg: {
+    width: 150,
+    height: 150,
+    resizeMode: 'cover',
+  },
+
+  sliderText: {
+    fontWeight: '600',
+  },
+
+  sliderPrice: {
+    fontWeight: '400',
+  },
+  adClick: {
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+  },
+});
 
 export default ProductAdView;
