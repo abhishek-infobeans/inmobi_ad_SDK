@@ -3,15 +3,14 @@ import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 
 const ProductAdView = (props: any) => {
   const {
-    media,
+    productItem,
     sliderItemStyle,
     sliderTextStyle,
     sliderPriceStyle,
     productTapped,
     sliderImgStyle,
   } = props;
-  const mediaURL = media?.poster_access_url;
-
+  const mediaURL = productItem?.image_urls[0];
   const AdTag = () => {
     return (
       <View style={styles.adStyle}>
@@ -32,7 +31,9 @@ const ProductAdView = (props: any) => {
         style={[styles.sliderImg, sliderImgStyle]}
         source={{ uri: mediaURL }}
       />
-      <Text style={[styles.sliderText, sliderTextStyle]}>Ad Product</Text>
+      <Text style={[styles.sliderText, sliderTextStyle]}>
+        {productItem?.title}
+      </Text>
       <Text style={[styles.sliderPrice, sliderPriceStyle]}>$10</Text>
       <AdTag />
       <TouchableOpacity onPress={productTapped} style={styles.adClick} />
