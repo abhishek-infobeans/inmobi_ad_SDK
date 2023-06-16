@@ -71,7 +71,7 @@ const VideoAdWithProductDetails = (props: any) => {
 
   return (
     <View style={[adContainerStyle, { flexDirection: 'row' }]}>
-      <View style={{ flex: 2, backgroundColor: 'black' }}>
+      <View style={{ flex: 2, backgroundColor: '#00000000' }}>
         {mediaURL ? (
           <>
             <Video
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     margin: 8,
   },
   videoStyle: {
-    height: 120,
+    height: 88,
     width: '100%',
   },
   clickStyle: {

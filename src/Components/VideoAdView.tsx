@@ -13,7 +13,6 @@ const height = parseInt('' + (Dimensions.get('window').width * 9) / 16);
 const VideoAdView = (props: any) => {
   const { media, videoTapped, adContainerStyle } = props;
   const mediaURL = media?.media_access_url;
-
   const AdTag = () => {
     return (
       <View style={styles.adStyle}>
