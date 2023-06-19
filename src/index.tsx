@@ -3,8 +3,9 @@ import React, { useEffect, useState } from 'react';
 
 import ProductAdView from './Components/ProductAdView';
 import VideoAdView from './Components/VideoAdView';
-import VideoAdWithProductDetails from 'react-native-inmobi_ad_sdk/src/Components/VideoAdWithProductDetails';
-import TopVideoWithBottomProductDetails from 'react-native-inmobi_ad_sdk/src/Components/TopVideoWithBottomProductDetails';
+import VideoAdWithProductDetails from './Components/VideoAdWithProductDetails';
+import TopVideoWithBottomProductDetails from './Components/TopVideoWithBottomProductDetails';
+import { LogEvents } from './EventsLogs/LogEvent';
 
 const SDK = (props: any) => {
   const [brandMedia, setBrandMedia] = useState<any>();
@@ -213,14 +214,18 @@ const SDK = (props: any) => {
 
   const brandVideoTapped = () => {
     props.advertisementTapped(brandMedia.id);
+    LogEvents({
+      userId: '7aac8fb0c3c711ed8f3dd1a03e907612',
+      eventCode: 'VIEW_HOME',
+    });
   };
 
   const productVideoTapped = () => {
-    props.advertisementTapped(brandMedia.id);
+    props.advertisementTapped(productMedia.id);
   };
 
   const productTapped = () => {
-    props.advertisementTapped(brandMedia.id);
+    props.advertisementTapped(productMedia.id);
   };
   {
     if (productMedia === undefined && brandMedia === undefined) {
@@ -273,41 +278,6 @@ const SDK = (props: any) => {
     default:
       break;
   }
-
-  // return isProduct !== undefined && isProduct ? (
-
-  //   <ProductAdView
-  //     productItem={productDetail}
-  //     sliderItemStyle={props.sliderItemStyle}
-  //     sliderImgStyle={props.sliderImgStyle}
-  //     sliderTextStyle={props.sliderTextStyle}
-  //     sliderPriceStyle={props.sliderPriceStyle}
-  //     productTapped={productTapped}
-  //   />
-  // ) : (adType === "VideoAdWithProductDetails" ? (
-  //     <TopVideoWithBottomProductDetails
-  //   // <VideoAdWithProductDetails
-  //     media={media}
-  //     videoTapped={videoTapped}
-  //     adContainerStyle={props.style}
-  //     skuId={productSKU}
-  //     productDetails={productDetail}
-  //     />):(
-  //       <VideoAdView
-  //       media={media}
-  //       videoTapped={videoTapped}
-  //       adContainerStyle={props.style}
-  //     />)
-  // );
 };
 
-export default SDK;
-
-/*
-API 
-     'x-api-key': 'ODFiNmUxODItMmMyNS00NTg4LWEyZTAtZDI3ZDAyNTY3MmQ2',
-      'client-id': '70891516',
-      "guest_id": 'b908f460957b11ed81e1c53095da88cf',
-      targeting_type: 'CATEGORY',
-      targeting_value_list: ['womens-sale'],
-*/
+export { LogEvents, SDK };

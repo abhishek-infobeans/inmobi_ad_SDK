@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-export const LogEvents = (props: any) => {
-  const { userId } = props;
+export function LogEvents(props: any) {
+  const { userId, eventCode } = props;
   console.log('props', JSON.stringify(props, null, 2));
   const headers = {
     'x-api-key': 'ZDQ3YTcyMTctZmI0ZC00NjJhLWJiODMtNGFjMGExZDIxYzBj',
@@ -20,7 +20,7 @@ export const LogEvents = (props: any) => {
       source_url: 'https://test-lord-and-taylor.myshopify.com/',
       pagination_index: 1,
     },
-    event_type: 'VIEW_HOME',
+    event_type: eventCode,
     event_timestamp: '1686637517',
   };
 
@@ -30,10 +30,10 @@ export const LogEvents = (props: any) => {
     })
     .then((response) => {
       // handle success
-      console.log('ClickStream Response ', response.data);
+      console.log('ClickStream Response ', response.data, eventCode);
     })
     .catch(function (error) {
       // handle error
       console.log(error);
     });
-};
+}
